@@ -24,8 +24,8 @@ void showAddItemDialog(BuildContext context, List<String> options, String select
                 options.add(newItem); // Add new item to the options list
                 options.add('select category'); // Re-add 'Add Item' at the end
                 selectedOption = newItem; // Select the newly added item
-                onChanged(selectedOption); // Notify parent widget of the change
-                Navigator.of(context).pop(selectedOption);
+                onChanged(newItem); // Notify parent widget of the change
+                Navigator.of(context).pop();
                // Close the dialog
               }
             },
@@ -41,4 +41,5 @@ void showAddItemDialog(BuildContext context, List<String> options, String select
       );
     },
   );
+
 }

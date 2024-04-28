@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:software_project/reportscreen/report_screen.dart';
+
+import 'main.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
-  // final int selectedIndex;
-  // final Function(int) onItemTapped;
-  //
-  // CustomBottomNavigationBar({required this.selectedIndex, required this.onItemTapped});
 
   @override
   Widget build(BuildContext context) {
@@ -15,8 +14,24 @@ class CustomBottomNavigationBar extends StatelessWidget {
         iconSize: 35,
         selectedItemColor: Colors.white,
         elevation: 3,
-        // currentIndex: selectedIndex,
-        // onTap: onItemTapped,
+        currentIndex: 0,
+        onTap: (index) {
+          switch (index) {
+            case 0:
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const MyApp()), // Navigate to FirstScreen
+              );
+              break;
+            case 1:
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const reportPage()), // Navigate to SecondScreen
+              );
+              break;
+          // Add cases for other screens as needed
+          }
+        },
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.grid_view_sharp),

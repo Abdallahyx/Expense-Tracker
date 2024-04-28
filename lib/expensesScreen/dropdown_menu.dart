@@ -16,34 +16,6 @@ class CustomDropdownMenu extends StatefulWidget {
   _CustomDropdownMenuState createState() => _CustomDropdownMenuState();
 }
 
-// class _CustomDropdownMenuState extends State<CustomDropdownMenu> {
-//   late String intial_value;
-//
-//   @override
-//   void initState() {
-//     super.initState();
-//     intial_value = widget.initialValue;
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return DropdownButton<String>(
-//       value: intial_value,
-//       onChanged: (String? newValue) {
-//         setState(() {
-//           intial_value = newValue!;
-//           widget.onChanged(newValue);
-//         });
-//       },
-//       items: widget.options.map<DropdownMenuItem<String>>((String value) {
-//         return DropdownMenuItem<String>(
-//           value: value,
-//           child: Text(value),
-//         );
-//       }).toList(),
-//     );
-//   }
-// }
 class _CustomDropdownMenuState extends State<CustomDropdownMenu> {
    late String intial_value;
 
@@ -72,10 +44,11 @@ class _CustomDropdownMenuState extends State<CustomDropdownMenu> {
         dropdownColor: Colors.white,
         hint: Text("choose category",style: TextStyle(color: Colors.black),),
          value: intial_value,
-        onChanged: (String? newValue) {
+        onChanged: (newValue) {
           setState(() {
             intial_value = newValue!;
-            widget.onChanged(newValue!);
+             widget.onChanged(newValue!);
+             print(newValue);
           });
         },
         underline: Container(),
