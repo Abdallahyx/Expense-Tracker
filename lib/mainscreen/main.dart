@@ -5,8 +5,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:software_project/accountscreen/user_model.dart';
 import 'package:software_project/expensesScreen/expenses_model.dart';
 import 'package:software_project/mainscreen/tile_widget.dart';
+import '../accountscreen/accountScreen.dart';
 import 'appbar.dart';
 import 'bottom_navigation_bar.dart';
 import 'box.dart';
@@ -15,7 +17,9 @@ import 'floating_button.dart';
 void main() async{
   await Hive.initFlutter();
   Hive.registerAdapter(ExpensemodelAdapter());
+  Hive.registerAdapter(UserModelAdapter());
   await Hive.openBox<Expense_model>('expenses');
+  await Hive.openBox<UserModel>('account');
   runApp(const MaterialApp(
     debugShowCheckedModeBanner: false,
     home: MyApp(),)
@@ -35,6 +39,8 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   var history;
   final box = Hive.box<Expense_model>('expenses');
+
+
 
   // This widget is the root of your application.
 

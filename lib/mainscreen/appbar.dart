@@ -24,6 +24,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                     context,MaterialPageRoute(builder: (context) => accountPage()));
               },
               child: const CircleAvatar(
+                backgroundImage: AssetImage(
+                    "asset/image.jpg"),
                 radius: 25,
                 backgroundColor: Colors.black,
               ),
@@ -43,7 +45,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                   ),
                 ),
                 Text(
-                  "maria",
+                  "User",
                   style: TextStyle(
                     fontSize: 15,
                     fontStyle: FontStyle.italic,

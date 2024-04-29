@@ -2,8 +2,10 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:multi_value_listenable_builder/multi_value_listenable_builder.dart';
 import 'package:software_project/expensesScreen/expenses_model.dart';
 
+import '../accountscreen/user_model.dart';
 import 'calculations.dart';
 
 class TotalBalanceWidget extends StatefulWidget {
@@ -15,13 +17,20 @@ class TotalBalanceWidget extends StatefulWidget {
 
 class _TotalBalanceWidgetState extends State<TotalBalanceWidget> {
   final box = Hive.box<Expense_model>('expenses');
+  final box1 = Hive.box<UserModel>('account');
+  var history;
+
 
   @override
   Widget build(BuildContext context) {
 
-    return ValueListenableBuilder(
-      valueListenable: box.listenable(),
+    return MultiValueListenableBuilder(
+        valueListenables:[ box.listenable(),box1.listenable()],
       builder: ( context, value, child) {
+        final userModel = box1.values.isNotEmpty ? box1.values.toList()[0] : null;
+        // final userModel1 = box1.values.isNotEmpty ? box1.values.toList()[1] : null;
+        final double balance = userModel?.balance ?? 0.0;
+        final double income = userModel?.income ?? 0.0;
         return Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -63,7 +72,7 @@ class _TotalBalanceWidgetState extends State<TotalBalanceWidget> {
                       ),
                       const SizedBox(height: 12),
                        Text(
-                        '\$ ${4800.00-cal()}',
+                        '\$ ${balance-cal()}',
                         style: const TextStyle(
                           fontSize: 40,
                           color: Colors.white,
@@ -96,8 +105,8 @@ class _TotalBalanceWidgetState extends State<TotalBalanceWidget> {
                                 const SizedBox(width: 8),
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: const [
-                                    Text(
+                                  children:  [
+                                    const Text(
                                       'Income',
                                       style: TextStyle(
                                         fontSize: 20,
@@ -106,8 +115,8 @@ class _TotalBalanceWidgetState extends State<TotalBalanceWidget> {
                                       ),
                                     ),
                                     Text(
-                                      '\$ 2500.00',
-                                      style: TextStyle(
+                                      '\$ ${income}',
+                                      style: const TextStyle(
                                         fontSize: 20,
                                         color: Colors.white,
                                         fontWeight: FontWeight.w600,

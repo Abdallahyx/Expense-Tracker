@@ -37,6 +37,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   hive: ^2.2.3
   hive_flutter: ^1.0.2
+  dependencies:
+  multi_value_listenable_builder: ^0.0.2
 
 dev_dependencies:
   flutter_test:
@@ -92,3 +94,5 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+  assets:
+    - asset/image.jpg

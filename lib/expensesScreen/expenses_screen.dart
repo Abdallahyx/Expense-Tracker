@@ -179,7 +179,6 @@ class expenses extends State<expensesPage> {
           var expense=Expense_model(selectedOption, description.text, value!, selectedDate);
           box.add(expense);
           Navigator.of(context).pop();
-          print(selectedOption);
 
         },
         child: Container(
