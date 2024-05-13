@@ -21,3 +21,24 @@ class UserModelAdapter extends TypeAdapter<UserModel> {
       fields[1] as double,
     );
   }
+
+  @override
+  void write(BinaryWriter writer, UserModel obj) {
+    writer
+      ..writeByte(2)
+      ..writeByte(0)
+      ..write(obj.balance)
+      ..writeByte(1)
+      ..write(obj.income);
+  }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UserModelAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
+}
